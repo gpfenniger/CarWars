@@ -13,3 +13,16 @@ To make a record keeper for Steve Jackson's board game Car Wars. This includes r
     * Advanced GUI for playing game
 * Character Records
 * Veichle Records
+
+**TODO**
+* Veichle Prototype
+* Finish Character Prototype
+* Transcribe Charts
+
+**Work Record**
+* July 3rd 2018
+    * Author: Griffin Pfenniger
+    * Time Contributed: 3 Hours
+    * Commits
+        * Character Prototype to Master
+        * Read Me Update to Master

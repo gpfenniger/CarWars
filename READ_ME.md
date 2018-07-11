@@ -15,7 +15,7 @@ To make a record keeper for Steve Jackson's board game Car Wars. This includes r
 * Veichle Records
 
 **TODO**
-* Veichle Prototype
+* Vehicle Prototype
 * Finish Character Prototype
 * Transcribe Charts
 
@@ -32,5 +32,15 @@ To make a record keeper for Steve Jackson's board game Car Wars. This includes r
     * No commits
 * July 5th 2018
     * Author: Griffin Pfenniger
-    * Time Contributed:
+    * Time Contributed: 2 Hours
     * Commits
+        * Vehicle Records and Test Modules
+* July 6th 2018
+    * Author: Griffin Pfenniger
+    * Time Contributed: Half and Hour
+    * No commits
+* July 11th 2018
+    * Author: Griffin Pfenniger
+    * Time Contributed: 2 Hours
+    * Commits
+        * Changed main widget to grid display

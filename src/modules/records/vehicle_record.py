@@ -5,6 +5,7 @@ Components Left:
 '''
 
 class BodyType:
+    # Component Class for Body
     def __init__(self, body_type, price, weight, max_load, spaces, cargo_spaces, armor_cost_to_weight):
         self.body_type = body_type
         self.price = price
@@ -16,16 +17,20 @@ class BodyType:
 
 
 class ArmorType:
+    # Component Class for Armor
+    # TODO
     def __init__(self, armour_type):
         self.armour_type = armour_type
 
 class Chassis:
+    # Component Class for Chassis
     def __init__(self, strength, weight_mod, price):
         self.strength = strength
         self.weight_mod = weight_mod
         self.price = price
 
 class Suspension:
+    # Component Class for Suspension
     def __init__(self, suspension_type, price, hc, van_hc, sub_hc): 
         self.suspension_type = suspension_type
         self.price = price
@@ -34,6 +39,7 @@ class Suspension:
         self.sub_hc = sub_hc
 
 class Power_Plant:
+    # Component Class for Power Plants
     def __init__(self, plant, cost, weight, spaces, dp, power_factors):
         self.plant = plant
         self.cost = cost
@@ -51,6 +57,7 @@ class Power_Plant:
             print("Engine is destroyed")
 
 class Tires:
+    # Component Class for Tires
     def __init__(self, tire_type, price, weight, dp):
         self.tire_type = tire_type
         self.price = price
@@ -64,8 +71,10 @@ class Tires:
         }
 
 class VehicleBuilder:
+    # This class is used to build Vehicles and can be a sole import
     def __init__(self):
         print("We're in business!")
+        # TODO move this section onto a MySQL Database
         self.body_types = {
             "Description": [ "Type", " Price", "Weight", "Max Load", "Spaces", "Cargo Spaces", "Armor Cost / Weight"],
             "Types": ["Subcompact", "Compact", "Mid_Sized", "Sedan", "Luxury", "Station_Wagon", "Pickup", "Camper", "Van"],
@@ -117,10 +126,9 @@ class VehicleBuilder:
             "Solid": [ 500, 75, 12 ]
         }
 
-    #TODO Fix mess
+    # This builds a vehicle
+    # NO ARGS : RETURN { Vehicle }
     def build(self):
-        print("First select the body type")
-
         prompts = [
             "First select the body type",
             "Now select a chasis type",
@@ -141,8 +149,7 @@ class VehicleBuilder:
             print("Your choice: ")
             choice = self.user_select(component_list[i]["Types"])
             component_stats = component_list[i][choice]
-            component_stats.append(choice)
-            # FIX
+            component_stats.append(choice) # Adds the component name to the end of the array
             components_made.append(self.make_component(component_types[i], component_stats))
 
         return Vehicle(
@@ -204,4 +211,3 @@ class Vehicle:
         self.cost = int(self.body.price) + (int(self.body.price) * self.chassis.price) 
         self.cost += (int(self.body.price) * self.suspension.price) 
         self.cost += self.power_plant.cost + self.tires.price
-        

@@ -41,6 +41,7 @@ To make a record keeper for Steve Jackson's board game Car Wars. This includes r
     * No commits
 * July 11th 2018
     * Author: Griffin Pfenniger
-    * Time Contributed: 2 Hours
+    * Time Contributed: 5 Hours
     * Commits
         * Changed main widget to grid display
+        * Prototype car movement

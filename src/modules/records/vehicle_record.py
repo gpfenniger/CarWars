@@ -4,6 +4,8 @@ Components Left:
     Weapons
 '''
 
+from math import radians, sin, cos
+
 class BodyType:
     # Component Class for Body
     def __init__(self, body_type, price, weight, max_load, spaces, cargo_spaces, armor_cost_to_weight):
@@ -160,6 +162,26 @@ class VehicleBuilder:
             components_made[4]
         )
 
+    # TODO Fix
+    def build_base(self):
+        my_body = self.body_types["Subcompact"]
+        my_body.append("Subcompact")
+        my_chassis = self.chassis_types["Light"]
+        my_chassis.append("Light")
+        my_suspension = self.suspension_types["Light"]
+        my_suspension.append("Light")
+        my_power_plant = self.power_plant_types["Small"]
+        my_power_plant.append("Small")
+        my_tires = self.tire_types["Standard"]
+        my_tires.append("Standard")
+        return Vehicle(
+            self.make_component("body", my_body),
+            self.make_component("chassis", my_chassis),
+            self.make_component("suspension", my_suspension),
+            self.make_component("power_plant", my_power_plant),
+            self.make_component("tires", my_tires)
+        )
+
     # Takes in a component type and array and returns an object of that type
     # ARGS { component_type STRING, array GENERIC } : RETURN OBJECT OF component_type
     def make_component(self, component_type, array):
@@ -197,6 +219,11 @@ class Vehicle:
         self.suspension = suspension
         self.power_plant = power_plant
         self.tires = tires
+        self.x = 100
+        self.y = 100
+        self.width = 20
+        self.length = 40
+        self.angle = 0
 
         self.weight = int(self.body.weight) + self.power_plant.weight + self.tires.weight
         if power_plant.power_factors < (self.weight / 3):
@@ -211,3 +238,36 @@ class Vehicle:
         self.cost = int(self.body.price) + (int(self.body.price) * self.chassis.price) 
         self.cost += (int(self.body.price) * self.suspension.price) 
         self.cost += self.power_plant.cost + self.tires.price
+
+    def draw(self):
+        return(
+            DrawInstructs(
+                    self.width,         # Width
+                    self.length,        # Height
+                    (0, 0, 0, 1),       # Colour
+                    [self.x, self.y],   # X and Y Position
+                    self.angle          # Angle
+                )
+            )
+
+    def change_angle(self, mod):
+        self.angle += mod
+
+    def move(self, distance, direction):
+        dx = cos(radians(self.angle))
+        dy = sin(radians(self.angle))
+        if direction == 'f':
+            self.x += dx
+            self.y += dy
+        elif direction == 'r':
+            self.x -= dx
+            self.y -= dy
+
+
+class DrawInstructs:
+    def __init__(self, width, height, color, pos, angle):
+        self.width = width
+        self.height = height
+        self.color = color
+        self.pos = pos
+        self.angle = angle
